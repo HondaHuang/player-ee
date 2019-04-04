@@ -42,7 +42,7 @@ public class LoginController extends HttpServlet {
 				//rd.forward(request, response);
 				HttpSession session = request.getSession();
 				session.setAttribute("email", player.getEmail());
-				response.sendRedirect("home.jsp");
+				response.sendRedirect("login.jsp");
 			}
 		} catch (BusinessException e) {
 			rd = request.getRequestDispatcher("login.jsp");

@@ -33,7 +33,7 @@ public class Success extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		if (session != null) {
 			out.println("<h2>Player with email: " + request.getParameter("email") + " logged in successfully at " + new Date() + "</h2>");
-			out.print("<a href='login.html'>Logout</a>");
+			out.print("<a href='login.jsp'>Logout</a>");
 			response.sendRedirect("logout");
 		} else {
 			out.println("You need to login first -> <a href='login.html'>Click Me</a>");

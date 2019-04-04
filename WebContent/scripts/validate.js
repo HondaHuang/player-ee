@@ -160,7 +160,7 @@ function isValidTeamSignUp() {
 
 function isValidTeamname(teamname) {
 	var b1 = false;
-	if (teamname.match(/^[a-zA-Z]{3,50}$/)) {
+	if (teamname.match(/^[a-zA-Z ]{3,50}$/)) {
 		b1 = true;
 	} else {
 		message = "Invalid Team Name";

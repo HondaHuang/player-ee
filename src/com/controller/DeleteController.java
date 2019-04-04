@@ -1,7 +1,9 @@
 package com.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -63,13 +65,16 @@ public class DeleteController extends HttpServlet {
 			String[] headers = { "Player ID", "Name", "DOB", "Gender", "Contact", "Email", "Team Name" };
 			String id = request.getParameter("id");
 			player = searchBO.getPlayerById(id);
+			HttpSession session = request.getSession();
 			if (player != null) {
 				playerList = new ArrayList<>();
 				playerList.add(player);
-				HttpSession session = request.getSession();
 				session.setAttribute("headers", headers);
 				session.setAttribute("playerList", playerList);
 				response.sendRedirect("delete.jsp");
+			}
+			if (player.getEmail().equals(session.getAttribute("email"))) {
+				session.invalidate();
 			}
 			crudBO.deletePlayer(id);
 		} catch (BusinessException e) {

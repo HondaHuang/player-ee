@@ -18,9 +18,18 @@
 		<li><a href="search.jsp">Search</a></li>
 		<li><a href="update.jsp">Update</a></li>
 		<li><a href="delete.jsp">Delete</a></li>
-		<li class="right"><a href="about.html">About</a></li>
+		<li class="right"><a href="logout">Log Out</a></li>
 	</ul>
 	<br>
+	<%
+		if (session != null && session.getAttribute("email") != null) {
+	%>
+	<h2 class="warn">
+		Signed in as
+		<%=session.getAttribute("email")%></h1>
+	<%
+		} else {
+	%>
 	<form action="login" onsubmit="return isValidUserCredentials()"
 		method="post">
 		<h2>Player Login</h2>
@@ -39,13 +48,16 @@
 			<span id="errorMessage" style="color: red;"><%=request.getAttribute("errorMessage")%></span>
 			<%
 				request.removeAttribute("errorMessage");
-				}
+					}
 			%>
 		</div>
 		<p>
 			Don't have an account? <a href="signup.jsp">Sign up here!</a>
 		</p>
 	</form>
+	<%
+		}
+	%>
 	<script type="text/javascript" src="scripts/validate.js"></script>
 </body>
 <footer>

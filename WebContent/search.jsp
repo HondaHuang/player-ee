@@ -23,9 +23,12 @@
 		<li><a class="active" href="search.jsp">Search</a></li>
 		<li><a href="update.jsp">Update</a></li>
 		<li><a href="delete.jsp">Delete</a></li>
-		<li class="right"><a href="about.html">About</a></li>
+		<li class="right"><a href="logout">Log Out</a></li>
 	</ul>
 	<br>
+	<%
+		if (session != null && session.getAttribute("email") != null) {
+	%>
 	<form action="search" onsubmit="return isPlayerSearchValid()">
 		<h2>Player Search</h2>
 		<select id="option" name="searchoption" onchange="searchChange()">
@@ -69,16 +72,25 @@
 		<span id="errorMessage" style="color: red;"><%=request.getAttribute("errorMessage")%></span>
 		<%
 			request.removeAttribute("errorMessage");
-			}
+				}
 		%>
 	</form>
 	<br>
 	<%
 		if (session != null && session.getAttribute("playerList") != null) {
-			String[] headers = (String[]) session.getAttribute("headers");
-			List<Player> playerList = (List<Player>) session.getAttribute("playerList");
+				String[] headers = (String[]) session.getAttribute("headers");
+				List<Player> playerList = (List<Player>) session.getAttribute("playerList");
 	%>
 	<st:playerResults playerList="<%=playerList%>" headers="<%=headers%>" />
+	<%
+		session.removeAttribute("playerList");
+			}
+	%>
+	<%
+		} else {
+	%>
+	<h2 class="warn" align="center" style="color: red;">Please login
+		first</h2>
 	<%
 		session.removeAttribute("playerList");
 		}

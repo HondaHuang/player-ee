@@ -22,41 +22,59 @@
 		<li><a href="search.jsp">Search</a></li>
 		<li><a href="update.jsp">Update</a></li>
 		<li><a href="delete.jsp">Delete</a></li>
-		<li class="right"><a href="about.html">About</a></li>
+		<li class="right"><a href="logout">Log Out</a></li>
 	</ul>
+	<%
+		if (session != null && session.getAttribute("email") != null) {
+	%>
 	<%
 		if (request.getAttribute("errorMessage") != null) {
 	%>
 	<span id="errorMessage" style="color: red;"><%=request.getAttribute("errorMessage")%></span>
 	<%
 		request.removeAttribute("errorMessage");
-		}
+			}
 	%>
-	<br>
-	<h2 class="white">Player Table</h2>
 	<br>
 	<%
 		if (session != null && session.getAttribute("playerList") != null) {
-			String[] headers = (String[]) session.getAttribute("headers");
-			List<Player> playerList = (List<Player>) session.getAttribute("playerList");
+				String[] headers = (String[]) session.getAttribute("headers");
+				List<Player> playerList = (List<Player>) session.getAttribute("playerList");
 	%>
+	<h2 class="white">Player Table</h2>
+	<br>
 	<st:playerResults playerList="<%=playerList%>" headers="<%=headers%>" />
+	<%
+		} else {
+	%>
+	<h2 class="warn">Please come from the navigation bar</h2>
 	<%
 		}
 	%>
 	<br>
 	<br>
-	<h2 class="white">Team Table</h2>
-	<br>
 	<%
 		if (session != null && session.getAttribute("teamList") != null) {
-			String[] teamheaders = (String[]) session.getAttribute("teamheaders");
-			List<Team> teamList = (List<Team>) session.getAttribute("teamList");
+				String[] teamheaders = (String[]) session.getAttribute("teamheaders");
+				List<Team> teamList = (List<Team>) session.getAttribute("teamList");
 	%>
+	<h2 class="white">Team Table</h2>
+	<br>
 	<st:teamResults teamList="<%=teamList%>" headers="<%=teamheaders%>" />
 	<%
-	session.removeAttribute("playerList");
-	session.removeAttribute("teamList");
+		session.removeAttribute("playerList");
+				session.removeAttribute("teamList");
+			}
+	%>
+	<%
+		} else {
+	%>
+	<br>
+	<h2 class="warn" align="center" style="color: red;">Please login
+		first</h2>
+	<%
+		session.removeAttribute("playerList");
+			session.removeAttribute("teamList");
 		}
 	%>
 </body>

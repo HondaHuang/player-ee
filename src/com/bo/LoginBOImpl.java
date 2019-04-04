@@ -11,7 +11,7 @@ public class LoginBOImpl implements LoginBO {
 		boolean b = false;
 		if (player != null && player.getEmail() != null && player.getPassword() != null
 				&& player.getEmail().matches("\\w+@\\w+\\.\\w+")
-				&& player.getPassword().matches("[a-z]{3,6}@[0-9]{3}")) {
+				&& player.getPassword().matches("[a-zA-Z0-9@]{6,20}")) {
 			b = new LoginDAOImpl().isValidPlayer(player);
 		} else {
 			throw new BusinessException("Invalid Email/Password");

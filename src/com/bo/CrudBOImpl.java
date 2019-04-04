@@ -22,7 +22,7 @@ public class CrudBOImpl implements CrudBO {
 			if (formatter.format(dob).matches("[0-9]{2}-[0-9]{2}-[0-9]{4}")) {
 				if (email.matches("\\w+@\\w+\\.\\w+")) {
 					if (gender.matches("[MF]{1}")) {
-						if (teamname.matches("[a-zA-Z]{3,15}")) {
+						if (teamname.matches("[a-zA-Z ]{3,15}")) {
 							if (Long.toString(contact).matches("[0-9]{10}")) {
 								crudDAO = getPlayerDAO();
 								player = crudDAO.registerPlayer(name, dob, email, gender, teamname, contact, password);

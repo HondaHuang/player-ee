@@ -20,7 +20,7 @@
 		<li><a href="search.jsp">Search</a></li>
 		<li><a href="update.jsp">Update</a></li>
 		<li><a href="delete.jsp">Delete</a></li>
-		<li class="right"><a href="about.html">About</a></li>
+		<li class="right"><a href="logout">Log Out</a></li>
 	</ul>
 	<br>
 	<div class="signup">
